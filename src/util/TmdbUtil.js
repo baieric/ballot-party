@@ -28,8 +28,6 @@ export function searchTV(query) {
 }
 
 export function getTMDBImage(path, size) {
-	// TODO it's not recommended to hard-code the image path prefix
-	// see https://developers.themoviedb.org/3/getting-started/images
 	if (path == null) {
 		return null;
 	}
