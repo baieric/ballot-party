@@ -1,16 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Link } from "react-router-dom";
 import './index.css';
-import App from './App';
+import './App.css';
+import Home from './Home';
+import GoldenGlobesPage from './GoldenGlobesPage';
 import reportWebVitals from './reportWebVitals';
+
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
+
+function Index() {
+  return (
+    <div>
+      <h2>Upcoming</h2>
+      <Link to="/ballot_party/golden_globes/2023">Golden Globes 2023</Link>
+    </div>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/ballot_party",
+    element: <Home />,
+    errorElement: <NoMatch />,
+    children: [
+      {index: true, element: <Index />},
+      {
+        path:"/ballot_party/golden_globes/2023",
+        element: <GoldenGlobesPage />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <div className="App">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );
 
