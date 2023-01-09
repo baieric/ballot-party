@@ -12,7 +12,7 @@ function NoMatch() {
     <div>
       <h2>Nothing to see here!</h2>
       <p>
-        <Link to="/">Go to the home page</Link>
+        <Link to="/ballot-party">Go to the home page</Link>
       </p>
     </div>
   );
@@ -22,14 +22,14 @@ function Index() {
   return (
     <div>
       <h2>Upcoming</h2>
-      <Link to="/ballot_party/golden_globes/2023">Golden Globes 2023</Link>
+      <Link to="/ballot-party/golden_globes/2023">Golden Globes 2023</Link>
     </div>
   );
 }
 
 const router = createBrowserRouter([
   {
-    path: "/ballot_party",
+    path: "/ballot-party",
     element: <Home />,
     errorElement: <NoMatch />,
     children: [
