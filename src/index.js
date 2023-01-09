@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter, Link } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Link, createRoutesFromElements, Route } from "react-router-dom";
 import './index.css';
 import './App.css';
 import Home from './Home';
@@ -27,20 +27,30 @@ function Index() {
   );
 }
 
-const router = createBrowserRouter([
-  {
-    path: "/ballot-party",
-    element: <Home />,
-    errorElement: <NoMatch />,
-    children: [
-      {index: true, element: <Index />},
-      {
-        path:"golden_globes_2023",
-        element: <GoldenGlobesPage />,
-      },
-    ],
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/ballot-party",
+//     element: <Home />,
+//     errorElement: <NoMatch />,
+//     children: [
+//       {index: true, element: <Index />},
+//       {
+//         path:"golden_globes_2023",
+//         element: <GoldenGlobesPage />,
+//       },
+//     ],
+//   },
+// ]);
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/ballot-party" element={<Home />}>
+      <Route index element={<Index />} />
+      <Route path="golden_globes_2023" element={<GoldenGlobesPage />} />
+      <Route path="*" element={<NoMatch />} />
+    </Route>
+  )
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

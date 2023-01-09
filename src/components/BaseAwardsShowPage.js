@@ -65,17 +65,20 @@ function Category(props) {
   const {title, nominees, selected, onClick, images} = props;
 
   const selectedNominee = nominees.find(n => getWinnerValue(n) === selected);
-
-  let imageKeys = [selectedNominee["media"]];
-  if (selectedNominee["type"] === "person" || selectedNominee["type"] === "crew") {
-    imageKeys = selectedNominee["person"].split(", ").map(s => s.trim());
+  let imageKeys = null;
+  if (selectedNominee != null) {
+    imageKeys = [selectedNominee["media"]];
+    if (selectedNominee["type"] === "person" || selectedNominee["type"] === "crew") {
+      imageKeys = selectedNominee["person"].split(", ").map(s => s.trim());
+    }
   }
+  console.log(selectedNominee, imageKeys);
 
   // TODO replace h5 with nicer UI
   return (
     <div className="category" onClick={onClick}>
       <h4>{title}</h4>
-      {selectedNominee && <>
+      {selectedNominee && imageKeys && <>
         <p>Your selection:</p>
         <Space wrap>
           {imageKeys.map(key =>
