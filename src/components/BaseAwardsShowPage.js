@@ -128,7 +128,7 @@ function BaseAwardsShowPage(props) {
   const [images, setImages] = useState({});
 
   // get all images on mount
-  useEffect(() => getAllImages(categories, setImages), []);
+  useEffect(() => getAllImages(categories, setImages), [categories]);
 
 
   const updateSelection = (category, nominee) => {
