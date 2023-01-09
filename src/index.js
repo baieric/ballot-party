@@ -22,20 +22,20 @@ function Index() {
   return (
     <div>
       <h2>Upcoming</h2>
-      <Link to="/ballot_party/golden_globes/2023">Golden Globes 2023</Link>
+      <Link to="/ballot-party/golden_globes/2023">Golden Globes 2023</Link>
     </div>
   );
 }
 
 const router = createBrowserRouter([
   {
-    path: "/ballot_party",
+    path: "/ballot-party",
     element: <Home />,
     errorElement: <NoMatch />,
     children: [
       {index: true, element: <Index />},
       {
-        path:"/ballot_party/golden_globes/2023",
+        path:"golden_globes/2023",
         element: <GoldenGlobesPage />,
       },
     ],
