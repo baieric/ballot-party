@@ -1,0 +1,18 @@
+.nominee {
+  margin-bottom: 4px;
+  margin-top: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: row;
+}
+
+.nom-text{
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.nom-img{
+  flex-direction: row;
+}
