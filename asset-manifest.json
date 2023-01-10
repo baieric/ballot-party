@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ballot-party/static/css/main.f04411fa.css",
-    "main.js": "/ballot-party/static/js/main.060b4b1b.js",
+    "main.css": "/ballot-party/static/css/main.3cc2bdfe.css",
+    "main.js": "/ballot-party/static/js/main.756a3c4b.js",
     "static/js/787.cc146cf6.chunk.js": "/ballot-party/static/js/787.cc146cf6.chunk.js",
     "index.html": "/ballot-party/index.html",
-    "main.f04411fa.css.map": "/ballot-party/static/css/main.f04411fa.css.map",
-    "main.060b4b1b.js.map": "/ballot-party/static/js/main.060b4b1b.js.map",
+    "main.3cc2bdfe.css.map": "/ballot-party/static/css/main.3cc2bdfe.css.map",
+    "main.756a3c4b.js.map": "/ballot-party/static/js/main.756a3c4b.js.map",
     "787.cc146cf6.chunk.js.map": "/ballot-party/static/js/787.cc146cf6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f04411fa.css",
-    "static/js/main.060b4b1b.js"
+    "static/css/main.3cc2bdfe.css",
+    "static/js/main.756a3c4b.js"
   ]
 }
