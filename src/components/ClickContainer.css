@@ -4,6 +4,7 @@
   border: 1px solid #aaa;
   border-radius: 4px;
   background: rgba(128,128,128,0.05);
+  cursor: pointer;
 }
 .click-container-root:focus {
   border: 1px solid #fff;

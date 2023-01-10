@@ -8,6 +8,7 @@ function Home(props){
   return (
     <>
       <div className="home-body">
+        <p className="secondary-text-serif">A tiny website for saving your awards predictions.</p>
         <p className="secondary-text">Upcoming</p>
         <ClickContainer onClick={onGoToGG23}>
           <p className="main-text">Golden Globes 2023</p>
