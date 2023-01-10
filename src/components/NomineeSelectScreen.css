@@ -17,11 +17,11 @@
 }
 
 /* hacky overrides */
-:where(.css-dev-only-do-not-override-k83k30).ant-modal {
+.ant-modal {
   top: 8px;
   max-width: calc(100vw - 16px);
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-modal .ant-modal-content {
+.ant-modal .ant-modal-content {
   height: calc(100vh - 16px);
   display: flex;
   flex-direction: column;
@@ -31,41 +31,41 @@
   padding-right: 0px;
   background-color: #212121;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-modal .ant-modal-header {
+.ant-modal .ant-modal-header {
   flex-shrink: 1;
   padding-left: 16px;
   padding-right: 16px;
   background-color: #212121;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-modal .ant-modal-title {
+.ant-modal .ant-modal-title {
   margin-right: 20px;
   color: #edcc6d;
   font-family: "futura book legacy","FuturaPT-Book",Futura,"Trebuchet MS",Arial,sans-serif;
   text-transform: uppercase;
   font-weight: unset;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-modal .ant-modal-footer {
+.ant-modal .ant-modal-footer {
   padding-left: 16px;
   padding-right: 16px;
   flex-shrink: 1;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-modal .ant-modal-body {
+.ant-modal .ant-modal-body {
   flex-grow: 1;
   padding-left: 16px;
   padding-right: 16px;
   overflow: scroll;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-btn-default:disabled {
+.ant-btn-default:disabled {
   border-color: #292929;
   color: rgba(255, 2555, 255, 0.25);
   background-color: rgba(255, 255, 255, 0.04)
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-btn-default {
+.ant-btn-default {
   background-color: rgba(0,0,0,0);
   color: #fff;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-btn-default:not(:disabled):active,
-:where(.css-dev-only-do-not-override-k83k30).ant-btn-default:not(:disabled):hover {
+.ant-btn-default:not(:disabled):active,
+.ant-btn-default:not(:disabled):hover {
   color: #fff;
   border-color: #fff;
 }
