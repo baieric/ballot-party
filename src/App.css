@@ -45,9 +45,9 @@
 }
 
 /* hacky overrides */
-:where(.css-dev-only-do-not-override-k83k30).ant-btn-text:not(:disabled):hover {
+.ant-btn-text:not(:disabled):hover {
   color: #C79F27;
 }
-:where(.css-dev-only-do-not-override-k83k30).ant-btn {
+.ant-btn {
   height: unset;
 }
