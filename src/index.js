@@ -1,53 +1,71 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter, Link, createRoutesFromElements, Route } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, useLocation, useNavigate, Outlet } from "react-router-dom";
 import './index.css';
 import './App.css';
-import Home from './Home';
 import GoldenGlobesPage from './GoldenGlobesPage';
 import reportWebVitals from './reportWebVitals';
+import {Button} from 'antd';
+import ClickContainer from './components/ClickContainer';
+import Home from './Home';
 
-function NoMatch() {
+const PAGES = {
+	Home: "home",
+	GoldenGlobes2023: "GoldenGlobes2023",
+}
+
+function Logo(props) {
   return (
-    <div>
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/ballot-party">Go to the home page</Link>
-      </p>
-    </div>
-  );
+    <Button className="logo-text main-text" type="text" onClick={props.onClick}>
+      Ballot Party
+    </Button>
+  )
 }
 
 function Index() {
+  const [page, setPage] = useState(PAGES.Home);
+  const {pathname, search} = useLocation();
+  const navigate = useNavigate();
+
+  const logo = <Logo onClick={() => setPageAndLocation(PAGES.Home)} />;
+
+  const setPageAndLocation = (toPage) => {
+    const params = new URLSearchParams(search);
+		const ceremony = params.get("ceremony");
+    setPage(toPage);
+    if (toPage == PAGES.Home) {
+      params.delete("ceremony");
+      navigate({pathname, search: params.toString()}, {replace: true});
+    } else {
+      params.set("ceremony", toPage);
+      navigate({pathname, search: params.toString()}, {replace: true});
+    }
+  }
+
+  // keep page state in sync with ceremony param
+  useEffect(() => {
+		const params = new URLSearchParams(search);
+		const ceremony = params.get("ceremony");
+		if (ceremony != null && page !== ceremony) {
+      setPage(ceremony);
+		} else if (ceremony == null && page !== PAGES.Home) {
+      setPage(PAGES.Home);
+    }
+	}, [search]);
+
   return (
-    <div>
-      <h2>Upcoming</h2>
-      <Link to="/ballot-party/golden_globes_2023">Golden Globes 2023</Link>
-    </div>
+    <>
+      {logo}
+      {page === PAGES.Home && <Home onGoToGG23={() => setPageAndLocation(PAGES.GoldenGlobes2023)} />}
+      {page === PAGES.GoldenGlobes2023 && <GoldenGlobesPage />}
+    </>
   );
 }
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/ballot-party",
-//     element: <Home />,
-//     errorElement: <NoMatch />,
-//     children: [
-//       {index: true, element: <Index />},
-//       {
-//         path:"golden_globes_2023",
-//         element: <GoldenGlobesPage />,
-//       },
-//     ],
-//   },
-// ]);
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/ballot-party" element={<Home />}>
+    <Route path="/ballot-party" element={<Outlet />}>
       <Route index element={<Index />} />
-      <Route path="golden_globes_2023" element={<GoldenGlobesPage />} />
-      <Route path="*" element={<NoMatch />} />
     </Route>
   )
 );

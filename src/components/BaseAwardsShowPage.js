@@ -3,8 +3,10 @@ import {searchPerson, searchMovie, searchTV, getTMDBImage} from '../util/TmdbUti
 import NomineeSelectScreen from './NomineeSelectScreen';
 import {useState, useEffect} from "react";
 import {getWinnerValue, getSubtitle} from '../util/NomineeUtil';
-import {ArrowUpOutlined, ArrowDownOutlined} from '@ant-design/icons';
+import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons';
 import {Modal, Button, Space } from 'antd';
+import ClickContainer from './ClickContainer';
+import Nominee from './Nominee';
 
 
 function getAllImages(categories, setImages) {
@@ -65,47 +67,25 @@ function Category(props) {
   const {title, nominees, selected, onClick, images} = props;
 
   const selectedNominee = nominees.find(n => getWinnerValue(n) === selected);
-  let imageKeys = null;
-  if (selectedNominee != null) {
-    imageKeys = [selectedNominee["media"]];
-    if (selectedNominee["type"] === "person" || selectedNominee["type"] === "crew") {
-      imageKeys = selectedNominee["person"].split(", ").map(s => s.trim());
-    }
-  }
-  console.log(selectedNominee, imageKeys);
 
-  // TODO replace h5 with nicer UI
   return (
-    <div className="category" onClick={onClick}>
-      <h4>{title}</h4>
-      {selectedNominee && imageKeys && <>
-        <p>Your selection:</p>
-        <Space wrap>
-          {imageKeys.map(key =>
-            <img
-              key={key}
-              src={getTMDBImage(images[key], "sm")}
-              alt={key}
-              width="75" height="112"
-            />
-          )}
-          <div>
-            <p>{getWinnerValue(selectedNominee)}</p>
-            <p>{getSubtitle(selectedNominee)}</p>
-          </div>
-        </Space>
+    <ClickContainer onClick={onClick}>
+      <p className="main-text">{title}</p>
+      {selectedNominee != null && <>
+        <p className="tertiary-text">Your selection</p>
+        <Nominee data={selectedNominee} getImage={key => getTMDBImage(images[key], "sm")} />
       </>}
-    </div>
+    </ClickContainer>
   );
 }
 
 function FormFooter(props){
-  const {formPage, numPages, onUp, onDown} = props;
+  const {formPage, numPages, onPrevious, onNext} = props;
   return (
     <div>
     <Space wrap>
-      <Button onClick={onUp} disabled={formPage === 0} icon={<ArrowUpOutlined/>} />
-      <Button onClick={onDown} disabled={formPage === numPages - 1} icon={<ArrowDownOutlined/>} />
+      <Button onClick={onPrevious} disabled={formPage === 0} icon={<ArrowLeftOutlined/>} />
+      <Button onClick={onNext} disabled={formPage === numPages - 1} icon={<ArrowRightOutlined/>} />
     </Space>
     </div>
   )
@@ -142,8 +122,8 @@ function BaseAwardsShowPage(props) {
   }
 
   return (
-    <div>
-      <h2>{title}</h2>
+    <>
+      <p className="logo-text main-text">{title}</p>
       {categoryKeys.map((category, index) =>
         <Category
           key={category}
@@ -159,8 +139,8 @@ function BaseAwardsShowPage(props) {
         footer={<FormFooter
           formPage={formPage}
           numPages={categoryKeys.length}
-          onUp={() => setFormPage(old => old - 1)}
-          onDown={() => setFormPage(old => old + 1)}
+          onPrevious={() => setFormPage(old => old - 1)}
+          onNext={() => setFormPage(old => old + 1)}
         />}
         onCancel={() => setFormPage(null)}
       >
@@ -172,7 +152,7 @@ function BaseAwardsShowPage(props) {
           images={images}
         />
       </Modal>
-    </div>
+    </>
   );
 }
 export default BaseAwardsShowPage;

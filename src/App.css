@@ -1,18 +1,48 @@
 .App {
   text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #111;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  padding: 24px;
 }
 
-a:link, a:visited {
-  color: #C79F27;
-  text-decoration: none;
+.main-text, .main-text:hover {
+  color: #edcc6d;
+  font-family: "futura book legacy","FuturaPT-Book",Futura,"Trebuchet MS",Arial,sans-serif;
+  text-transform: uppercase;
 }
-a:hover, a:active {
-  text-decoration: none;
+
+.secondary-text {
+  color: #fff;
+  font-family: "futura book legacy","FuturaPT-Book",Futura,"Trebuchet MS",Arial,sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.secondary-text-serif {
+  color: #fff;
+  font-family: "Hoefler Text 4r",Baskerville,"Baskerville Old Face","Hoefler Text","Times New Roman",serif;
+  font-size: 16px;
+}
+
+.tertiary-text {
+  color: #fff;
+  font-family: "futura book legacy","FuturaPT-Book",Futura,"Trebuchet MS",Arial,sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.logo-text {
+  font-size: 24px;
+}
+
+/* hacky overrides */
+:where(.css-dev-only-do-not-override-k83k30).ant-btn-text:not(:disabled):hover {
+  color: #C79F27;
+}
+:where(.css-dev-only-do-not-override-k83k30).ant-btn {
+  height: unset;
 }

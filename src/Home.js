@@ -1,11 +1,15 @@
-import {Link, Outlet} from "react-router-dom";
+import ClickContainer from './components/ClickContainer';
 
-function Home(props) {
+function Home(props){
+  const {onGoToGG23} = props;
   return (
-    <div>
-      <Link to="/ballot-party"><h1>Ballot Party</h1></Link>
-      <Outlet />
-    </div>
+    <>
+      <p className="secondary-text">Upcoming</p>
+      <ClickContainer onClick={onGoToGG23}>
+        <p className="main-text">Golden Globes 2023</p>
+      </ClickContainer>
+    </>
   );
 }
+
 export default Home;

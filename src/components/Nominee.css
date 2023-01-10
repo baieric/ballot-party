@@ -1,0 +1,32 @@
+.nominee-root {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  align-items: center;
+}
+
+.nominee-images {
+  display: flex;
+  flex-direction: row;
+}
+
+.nominee-image:not(:first-child) {
+  margin-left: 8px;
+}
+
+.nominee-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  text-align: left;
+}
+
+.nominee-title {
+  margin: 0px;
+}
+
+.nominee-subtitle {
+  margin-top: 4px;
+  margin-bottom: 0px;
+}

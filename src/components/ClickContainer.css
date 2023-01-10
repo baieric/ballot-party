@@ -1,0 +1,11 @@
+.root {
+  width: 100%;
+  margin: 4px;
+  padding: 4px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: rgba(128,128,128,0.05);
+}
+.root:focus {
+  border: 1px solid #fff;
+}
