@@ -92,7 +92,7 @@ function FormFooter(props){
 }
 
 function BaseAwardsShowPage(props) {
-  const {title, categories, storageKey} = props;
+  const {title, categories, storageKey, date} = props;
   const categoryKeys = Object.keys(categories);
 
   // check for existing selections
@@ -124,9 +124,21 @@ function BaseAwardsShowPage(props) {
     }
   }
 
+  const dateOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    hour12: true,
+    timeZoneName: "short",
+  };
+
   return (
     <>
       <p className="logo-text main-text">{title}</p>
+      <p className="secondary-text-serif ceremony-date">
+        {date.toLocaleString("en-US", dateOptions)}
+      </p>
       <div className="categories">
         {categoryKeys.map((category, index) =>
           <Category

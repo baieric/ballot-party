@@ -8,6 +8,10 @@
 }
 
 .home-body {
-  padding-top: 8px;
+  padding-top: 12px;
   flex-grow: 1;
+}
+
+.home-subtitle {
+  margin-bottom: 24px;
 }

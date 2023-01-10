@@ -8,6 +8,12 @@
 .modal-close {
   color: #edcc6d;
 }
+
+.ceremony-date {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
 @media (min-width: 768px) {
   .categories > .click-container-root {
     align-items: center;
