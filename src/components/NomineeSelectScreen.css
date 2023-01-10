@@ -22,7 +22,7 @@
   max-width: calc(100vw - 16px);
 }
 .ant-modal .ant-modal-content {
-  height: calc(100vh - 16px);
+  height: calc(100dvh - 16px);
   display: flex;
   flex-direction: column;
   padding-top: 16px;
