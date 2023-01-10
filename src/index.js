@@ -62,7 +62,7 @@ function Index() {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/ballot-party" element={<Outlet />}>
+    <Route path="/" element={<Outlet />}>
       <Route index element={<Index />} />
     </Route>
   )

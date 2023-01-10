@@ -2,7 +2,7 @@ import {GOLDEN_GLOBES_2023} from './constants/GoldenGlobesConstants';
 import BaseAwardsShowPage from './components/BaseAwardsShowPage';
 
 function GoldenGlobesPage(props) {
-  const event = new Date('January 10, 2023 20:00:00 GMT-5:00');
+  const event = new Date(GOLDEN_GLOBES_2023['date']);
 
   return <BaseAwardsShowPage
     title={GOLDEN_GLOBES_2023['title']}
