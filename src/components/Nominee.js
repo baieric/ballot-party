@@ -17,6 +17,7 @@ function Nominee(props) {
             src={getImage(key)}
             alt={key}
             width="75" height="112"
+            onerror="this.style.display='none'"
           />
         )}
       </div>

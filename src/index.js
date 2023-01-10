@@ -6,7 +6,6 @@ import './App.css';
 import GoldenGlobesPage from './GoldenGlobesPage';
 import reportWebVitals from './reportWebVitals';
 import {Button} from 'antd';
-import ClickContainer from './components/ClickContainer';
 import Home from './Home';
 
 const PAGES = {
@@ -31,9 +30,8 @@ function Index() {
 
   const setPageAndLocation = (toPage) => {
     const params = new URLSearchParams(search);
-		const ceremony = params.get("ceremony");
     setPage(toPage);
-    if (toPage == PAGES.Home) {
+    if (toPage === PAGES.Home) {
       params.delete("ceremony");
       navigate({pathname, search: params.toString()}, {replace: true});
     } else {
@@ -54,11 +52,11 @@ function Index() {
 	}, [search]);
 
   return (
-    <>
+    <div className="root-page">
       {logo}
       {page === PAGES.Home && <Home onGoToGG23={() => setPageAndLocation(PAGES.GoldenGlobes2023)} />}
       {page === PAGES.GoldenGlobes2023 && <GoldenGlobesPage />}
-    </>
+    </div>
   );
 }
 

@@ -2,8 +2,8 @@ import "./BaseAwardsShowPage.css";
 import {searchPerson, searchMovie, searchTV, getTMDBImage} from '../util/TmdbUtil';
 import NomineeSelectScreen from './NomineeSelectScreen';
 import {useState, useEffect} from "react";
-import {getWinnerValue, getSubtitle} from '../util/NomineeUtil';
-import {ArrowLeftOutlined, ArrowRightOutlined} from '@ant-design/icons';
+import {getWinnerValue} from '../util/NomineeUtil';
+import {ArrowLeftOutlined, ArrowRightOutlined, CloseOutlined} from '@ant-design/icons';
 import {Modal, Button, Space } from 'antd';
 import ClickContainer from './ClickContainer';
 import Nominee from './Nominee';
@@ -119,23 +119,29 @@ function BaseAwardsShowPage(props) {
     newSelection[category] = nominee;
     setMySelections(old => ({...old, ...newSelection}));
     localStorage.setItem(`${storageKey} ${category}`, nominee);
+    if (formPage !== categoryKeys.length - 1) {
+      setTimeout(() => setFormPage(old => old + 1), 300);
+    }
   }
 
   return (
     <>
       <p className="logo-text main-text">{title}</p>
-      {categoryKeys.map((category, index) =>
-        <Category
-          key={category}
-          title={category}
-          nominees={categories[category]}
-          selected={mySelections[category]}
-          onClick={() => setFormPage(index)}
-          images={images}
-        />
-      )}
+      <div className="categories">
+        {categoryKeys.map((category, index) =>
+          <Category
+            key={category}
+            title={category}
+            nominees={categories[category]}
+            selected={mySelections[category]}
+            onClick={() => setFormPage(index)}
+            images={images}
+          />
+        )}
+      </div>
       <Modal
         open={formPage != null}
+        title={categoryKeys[formPage]}
         footer={<FormFooter
           formPage={formPage}
           numPages={categoryKeys.length}
@@ -143,6 +149,7 @@ function BaseAwardsShowPage(props) {
           onNext={() => setFormPage(old => old + 1)}
         />}
         onCancel={() => setFormPage(null)}
+        closeIcon={<CloseOutlined style={{color: "#fff"}} />}
       >
         <NomineeSelectScreen
           category={categoryKeys[formPage]}

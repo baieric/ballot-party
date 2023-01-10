@@ -1,11 +1,13 @@
-.root {
-  width: 100%;
+.click-container-root {
   margin: 4px;
   padding: 4px;
   border: 1px solid #aaa;
   border-radius: 4px;
   background: rgba(128,128,128,0.05);
 }
-.root:focus {
+.click-container-root:focus {
   border: 1px solid #fff;
+}
+.click-container-root:not(:first-child) {
+  margin-top: 8px;
 }

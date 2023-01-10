@@ -1,3 +1,16 @@
 .category-text {
   margin-left: 16px;
 }
+.categories {
+  width: 100%;
+}
+.modal-close {
+  color: #edcc6d;
+}
+@media (min-width: 768px) {
+  .categories > .click-container-root {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
