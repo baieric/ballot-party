@@ -32,7 +32,7 @@ export default class OscarsApi {
   }
 
   _formatNominee(n){
-     const titleSplit = n.split(/-|–/).map(s => s.trim());
+     const titleSplit = n.split(/ - | – /).map(s => s.trim());
 
      const songRegex = /^"(.*)" from (.*)$/;
      const songMatch = titleSplit[0].match(songRegex);
