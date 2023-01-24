@@ -72,7 +72,7 @@ function BaseAwardsShowPage(props) {
     newSelection[category] = nominee;
     setMySelections(old => ({...old, ...newSelection}));
     localStorage.setItem(`${storageKey} ${category}`, nominee);
-    if (formPage !== categoryKeys.length - 1) {
+    if (formPage !== categoryKeys.length + 1) {
       setTimeout(() => setFormPage(old => old + 1), 600);
     }
   }
