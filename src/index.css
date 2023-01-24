@@ -18,3 +18,13 @@ code {
   flex-direction: column;
   height: inherit;
 }
+
+.root-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #111;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

@@ -1,3 +1,21 @@
+@font-face {
+    font-family: "PlayfairDisplay-Regular";
+    src: url("./fonts/PlayfairDisplay-Regular.eot");
+    /* IE9 Compat Modes */
+    src: url("./fonts/PlayfairDisplay-Regular.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("./fonts/PlayfairDisplay-Regular.svg") format("svg"),
+        /* Legacy iOS */
+        url("./fonts/PlayfairDisplay-Regular.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("./fonts/PlayfairDisplay-Regular.woff") format("woff"),
+        /* Modern Browsers */
+        url("./fonts/PlayfairDisplay-Regular.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
 .App {
   text-align: center;
   background-color: #111;
@@ -28,8 +46,9 @@
 
 .secondary-text-serif {
   color: #fff;
-  font-family: "Hoefler Text 4r",Baskerville,"Baskerville Old Face","Hoefler Text","Times New Roman",serif;
+  font-family: 'PlayfairDisplay-Regular',serif;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .tertiary-text {

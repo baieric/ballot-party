@@ -14,6 +14,10 @@
   margin-bottom: 20px;
 }
 
+.awards-page {
+  padding-top: 16px;
+}
+
 @media (min-width: 768px) {
   .categories > .click-container-root {
     align-items: center;

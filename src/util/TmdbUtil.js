@@ -1,19 +1,24 @@
 import axios from 'axios';
 
 export function searchPerson(query) {
+	let q = query;
+	if (query == "Charles Chaplin"){
+		q = "Charlie Chaplin";
+	}
 	return axios.get("https://api.themoviedb.org/3/search/person", {
 		params: {
 			api_key: process.env.REACT_APP_TMDB_API_KEY,
-			query: query
+			query: q
 		}
 	});
 }
 
-export function searchMovie(query) {
+export function searchMovie(query, year) {
 	return axios.get("https://api.themoviedb.org/3/search/movie", {
 		params: {
 			api_key: process.env.REACT_APP_TMDB_API_KEY,
-			query: query
+			query: query,
+			primary_release_year: year,
 		}
 	});
 }

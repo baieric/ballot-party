@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, useLocation, useNavigate, Outlet } from "react-router-dom";
 import './index.css';
 import './App.css';
-import GoldenGlobesPage from './GoldenGlobesPage';
+import OscarsPage from './OscarsPage';
 import reportWebVitals from './reportWebVitals';
 import {Button} from 'antd';
 import Home from './Home';
 
 const PAGES = {
 	Home: "home",
-	GoldenGlobes2023: "GoldenGlobes2023",
+	Oscars: "oscars",
 }
 
 function Logo(props) {
@@ -23,39 +23,50 @@ function Logo(props) {
 
 function Index() {
   const [page, setPage] = useState(PAGES.Home);
+	const [pageNum, setPageNum] = useState(null);
   const {pathname, search} = useLocation();
   const navigate = useNavigate();
 
-  const logo = <Logo onClick={() => setPageAndLocation(PAGES.Home)} />;
-
-  const setPageAndLocation = (toPage) => {
+  const setPageAndLocation = (toPage, n=null) => {
     const params = new URLSearchParams(search);
     setPage(toPage);
     if (toPage === PAGES.Home) {
       params.delete("ceremony");
+			params.delete("n");
       navigate({pathname, search: params.toString()}, {replace: true});
     } else {
       params.set("ceremony", toPage);
+			if (n != null) {
+				params.set("n", n);
+			} else {
+				params.delete("n");
+			}
       navigate({pathname, search: params.toString()}, {replace: true});
     }
   }
 
-  // keep page state in sync with ceremony param
+  // keep page state in sync with ceremony and n params
   useEffect(() => {
 		const params = new URLSearchParams(search);
 		const ceremony = params.get("ceremony");
+		const n = params.get("n");
 		if (ceremony != null && page !== ceremony) {
       setPage(ceremony);
 		} else if (ceremony == null && page !== PAGES.Home) {
       setPage(PAGES.Home);
     }
+		if (n != null && pageNum !== n){
+			setPageNum(n);
+		} else {
+			setPageNum(null);
+		}
 	}, [search]);
 
   return (
     <div className="root-page">
-      {logo}
-      {page === PAGES.Home && <Home onGoToGG23={() => setPageAndLocation(PAGES.GoldenGlobes2023)} />}
-      {page === PAGES.GoldenGlobes2023 && <GoldenGlobesPage />}
+      <div className="root-header"><Logo onClick={() => setPageAndLocation(PAGES.Home)} /></div>
+      {page === PAGES.Home && <Home onGoToOscars={(n) => setPageAndLocation(`${PAGES.Oscars}-${n}`)} />}
+      {page.startsWith(PAGES.Oscars) && <OscarsPage n={page.split("-")[1]} />}
     </div>
   );
 }
