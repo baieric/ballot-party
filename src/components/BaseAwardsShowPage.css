@@ -18,6 +18,21 @@
   padding-top: 16px;
 }
 
+.form-start {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-button {
+  padding-top: 16px;
+}
+
+.ant-btn {
+  font-family: "futura book legacy","FuturaPT-Book",Futura,"Trebuchet MS",Arial,sans-serif;
+  text-transform: uppercase;
+}
+
 @media (min-width: 768px) {
   .categories > .click-container-root {
     align-items: center;

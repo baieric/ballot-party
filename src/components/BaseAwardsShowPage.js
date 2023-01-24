@@ -77,12 +77,14 @@ function BaseAwardsShowPage(props) {
     }
   }
 
+  const today = new Date();
+  const isInPast = date < today;
+
   const dateOptions = {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
-
   };
 
   return (
@@ -99,30 +101,47 @@ function BaseAwardsShowPage(props) {
             nominees={categories[category]["nominees"]}
             winner={categories[category]["winner"]}
             selected={mySelections[category]}
-            onClick={() => setFormPage(index)}
+            onClick={() => setFormPage(index + 1)}
             images={images}
           />
         )}
       </div>
       <Modal
         open={formPage != null}
-        title={categoryKeys[formPage]}
-        footer={<FormFooter
+        title={formPage === 0 || formPage === categoryKeys.length + 1 ? title : categoryKeys[formPage - 1]}
+        footer={formPage === 0 ? null : <FormFooter
           formPage={formPage}
-          numPages={categoryKeys.length}
+          numPages={categoryKeys.length + 2}
           onPrevious={() => setFormPage(old => old - 1)}
           onNext={() => setFormPage(old => old + 1)}
         />}
         onCancel={() => setFormPage(null)}
         closeIcon={<CloseOutlined style={{color: "#fff"}} />}
       >
-        <NomineeSelectScreen
-          category={categoryKeys[formPage]}
-          nominees={formPage != null ? categories[categoryKeys[formPage]]["nominees"] : []}
-          selected={mySelections[categoryKeys[formPage]]}
-          updateSelection={updateSelection}
-          images={images}
-        />
+        {formPage != null && formPage === 0 && (
+          <div className="form-start">
+            <p className="secondary-text-serif">Choose your nominees.</p>
+            {isInPast && <p className="secondary-text-serif">Once you're done, you can compare them to the actual winners.</p>}
+            {!isInPast && <p className="secondary-text-serif">After the ceremony, come back and compare your choices to the actual winners.</p>}
+            <div className="start-button"><Button onClick={() => setFormPage(1)}>Start</Button></div>
+          </div>
+        )}
+        {formPage != null && formPage > 0 && formPage <= categoryKeys.length && (
+          <NomineeSelectScreen
+            category={categoryKeys[formPage-1]}
+            nominees={categories[categoryKeys[formPage-1]]["nominees"]}
+            selected={mySelections[categoryKeys[formPage-1]]}
+            updateSelection={updateSelection}
+            images={images}
+          />
+        )}
+        {formPage != null && formPage === categoryKeys.length + 1 && (
+          <div className="form-start">
+            <p className="secondary-text-serif">You're done!</p>
+            {!isInPast && <p className="secondary-text-serif">After the ceremony, come back and compare your choices to the actual winners.</p>}
+            <div className="start-button"><Button onClick={() => setFormPage(null)}>Done</Button></div>
+          </div>
+        )}
       </Modal>
     </div>
   );

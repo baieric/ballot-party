@@ -29,7 +29,7 @@ function Home(props){
     const numToGet = todayDate.getFullYear() - 1928;
     oscars.search(numToGet, (latestDate, categories) => {
       const numsForPast = Array.from({length: numToGet - 1}, (_, i) => i + 1).reverse();
-      if (categories.length > 0) {
+      if (Object.keys(categories).length > 0) {
         if (datesAreOnSameDay(latestDate, todayDate)) {
           setToday([numToGet]);
         } else if(latestDate > todayDate) {
@@ -42,8 +42,6 @@ function Home(props){
       setPast(numsForPast);
     });
   }, []);
-
-  // TODO set loading state if past is empty
 
   return (
     <>

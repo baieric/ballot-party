@@ -32,7 +32,7 @@ export default class OscarsApi {
   }
 
   _formatNominee(n){
-     const titleSplit = n.split("–").map(s => s.trim());
+     const titleSplit = n.split(/-|–/).map(s => s.trim());
 
      const songRegex = /^"(.*)" from (.*)$/;
      const songMatch = titleSplit[0].match(songRegex);
@@ -92,9 +92,17 @@ export default class OscarsApi {
     const winner = date.setHours(0,0,0,0) >= today.setHours(0,0,0,0) ? null : arr[1];
     return {
       category: arr[0],
-      winner: this._formatNominee(winner),
+      winner: winner != null ? this._formatNominee(winner) : null,
       nominees: arr.slice(1).map(n => this._formatNominee(n)),
     };
+  }
+
+  _getNomTable(tables){
+    return tables.find(t => {
+      return t.find(row => {
+        return row.find(i => i.startsWith("Best Actor"));
+      });
+    });
   }
 
   date(num, callback) {
@@ -126,22 +134,27 @@ export default class OscarsApi {
           cleanRef: true
       	}).then(response => {
           // if page does not exist, or nominees are not published yet, return nothing
-          if ('error' in response || response.data[0][0][0] === "Date") {
+          if ('error' in response) {
             callback(date, []);
           } else {
-            const table = response.data[0]
-              .flat()
-              .filter(s => s.length > 0)
-              .map(s => s.split("\n"))
-              .map(arr => this._categoryArrToDict(arr.filter(s => s.length > 0), date));
-            const categoryDict = {}
-            table.forEach(row => {
-              categoryDict[row["category"]] = row;
-            });
-            callback(
-              date,
-              categoryDict
-            );
+            const nomTable = this._getNomTable(response.data);
+            if (nomTable == null) {
+              callback(date, []);
+            } else {
+              const table = nomTable
+                .flat()
+                .filter(s => s.length > 0)
+                .map(s => s.split("\n"))
+                .map(arr => this._categoryArrToDict(arr.filter(s => s.length > 0), date));
+              const categoryDict = {}
+              table.forEach(row => {
+                categoryDict[row["category"]] = row;
+              });
+              callback(
+                date,
+                categoryDict
+              );
+            }
           }
         });
 
