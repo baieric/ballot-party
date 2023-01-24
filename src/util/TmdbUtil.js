@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function searchPerson(query) {
 	let q = query;
-	if (query == "Charles Chaplin"){
+	if (query === "Charles Chaplin"){
 		q = "Charlie Chaplin";
 	}
 	return axios.get("https://api.themoviedb.org/3/search/person", {

@@ -1,7 +1,7 @@
 import "./BaseAwardsShowPage.css";
-import {searchPerson, searchMovie, searchTV, getTMDBImage} from '../util/TmdbUtil';
+import {getTMDBImage} from '../util/TmdbUtil';
 import NomineeSelectScreen from './NomineeSelectScreen';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {ArrowLeftOutlined, ArrowRightOutlined, CloseOutlined} from '@ant-design/icons';
 import {Modal, Button, Space } from 'antd';
 import ClickContainer from './ClickContainer';

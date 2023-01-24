@@ -18,10 +18,10 @@ function getAllImages(categories, n, setImages) {
   for (var c in categories){
     if (["Best Writing (Title Writing)", "Director", "Directing", "Actor", "Actress"].some(p => c.includes(p))){
       categories[c].nominees.map(n => n.nominee.split(" and ").map(m => peopleSet.add(m)));
-    } else if (c == "Best Original Song") {
+    } else if (c === "Best Original Song") {
       categories[c].nominees.map(n => movieSet.add(n.secondary));
     } else {
-      categories[c].nominees.filter(n => n.nominee != "No specific film").map(n => movieSet.add(n.nominee));
+      categories[c].nominees.filter(n => n.nominee !== "No specific film").map(n => movieSet.add(n.nominee));
     }
   }
   for (const p of peopleSet){
@@ -41,7 +41,7 @@ function getAllImages(categories, n, setImages) {
         const handleResult = (r) => {
           let find = r[0];
           if (r.length > 1) {
-            find = r.find(r => r.title.toLowerCase() == m.toLowerCase());
+            find = r.find(r => r.title.toLowerCase() === m.toLowerCase());
           }
           if (find != null) {
             const path = find.poster_path;
@@ -50,13 +50,13 @@ function getAllImages(categories, n, setImages) {
             setImages(old => ({...old, ...newImage}));
           }
         }
-        if (results.length == 0) {
+        if (results.length === 0) {
           searchMovie(m, parseInt(n) + 1927 - 1).then(response2 => {
             const results2 = response2.data.results.filter(r => normalize(r.title).startsWith(normalize(m)) && r.poster_path != null);
-            if (results2.length == 0) {
+            if (results2.length === 0) {
               searchMovie(m, parseInt(n) + 1927 + 1).then(response3 => {
                 const results3 = response3.data.results.filter(r => normalize(r.title).startsWith(normalize(m)) && r.poster_path != null);
-                if (results3.length == 0) {
+                if (results3.length === 0) {
                   searchMovie(m, parseInt(n) + 1927 - 2).then(response4 => {
                     const results4 = response4.data.results.filter(r => normalize(r.title).startsWith(normalize(m)) && r.poster_path != null);
                     if (results4.length > 0){

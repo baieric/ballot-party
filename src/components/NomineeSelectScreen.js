@@ -25,7 +25,7 @@ function getTitleForSort(s){
 }
 
 function NomineeSelectScreen(props) {
-  const {category, nominees, selected, winner, updateSelection, images} = props;
+  const {category, nominees, selected, updateSelection, images} = props;
   nominees.sort((a,b) => {
     if (["Director", "Directing", "Actor", "Actress"].some(p => category.includes(p))){
       // sort by second word in name (usually last name?)

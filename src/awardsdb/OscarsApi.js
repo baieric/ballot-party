@@ -2,9 +2,6 @@ import wiki from 'wikipedia';
 import axios from 'axios';
 
 export default class OscarsApi {
-  constructor() {
-  }
-
   _numToNth(num) {
     if (num >= 4 && num <= 20) {
       return `${num}th`;

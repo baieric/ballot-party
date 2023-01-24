@@ -1,7 +1,6 @@
 import ClickContainer from './components/ClickContainer';
 import KofiButton from './components/KofiButton';
 import {Button} from 'antd';
-import {GOLDEN_GLOBES_2023} from './constants/GoldenGlobesConstants';
 import './Home.css';
 import {useState, useEffect} from 'react';
 import AwardsDbApi from './awardsdb/AwardsDbApi';
@@ -47,7 +46,7 @@ function Home(props){
     <>
       <div className="home-body">
         <p className="secondary-text-serif home-subtitle">A tiny website for saving your awards predictions.</p>
-        {past.length == 0 && <Spinner />}
+        {past.length === 0 && <Spinner />}
         {upcoming.length > 0 && (
           <>
             <p className="secondary-text">Upcoming</p>
